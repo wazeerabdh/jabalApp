@@ -21,7 +21,6 @@ class FlashSaleWidget extends StatelessWidget {
     return Consumer<FlashSaleProvider>(
       builder: (context, flashProvider, _) {
         return flashProvider.flashSaleModel?.products != null && flashProvider.flashSaleModel!.products!.isNotEmpty ? ResponsiveHelper.isDesktop(context) ? Row(children: [
-
           Container(
             height: 230, width: 350,
             alignment: Alignment.bottomCenter,
@@ -38,7 +37,6 @@ class FlashSaleWidget extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-
                 Align(
                   alignment: Alignment.topRight,
                   child: InkWell(
@@ -50,7 +48,6 @@ class FlashSaleWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Container(
                   height: 195,
                   width: Dimensions.webScreenWidth,
@@ -82,23 +79,19 @@ class FlashSaleWidget extends StatelessWidget {
               ],
             ),
           ),
-
         ]) : Column(children: [
-
           Stack(clipBehavior: Clip.none, children: [
             Container(
               height: 200,
               margin: const EdgeInsets.only(top: Dimensions.paddingSizeDefault, bottom: 80),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault),
-                color: Colors.cyan.withOpacity(.3),
+                color: Colors.grey.withOpacity(.2),
               ),
               child: FittedBox(
                 alignment: Alignment.topCenter,
                 child: Row(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-
                   Image.asset(Images.flashSale, width: 150, height: 115, fit: BoxFit.cover),
-
                   const Padding(
                     padding: EdgeInsets.only(top: Dimensions.paddingSizeLarge, right: Dimensions.paddingSizeLarge),
                     child: FlashSaleTimerWidget(),

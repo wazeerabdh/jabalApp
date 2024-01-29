@@ -2,11 +2,13 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'package:get_it/get_it.dart';
 import 'package:hexacom_user/common/widgets/cookies_widget.dart';
 import 'package:hexacom_user/deleviry/commons/providers/localization_provider.dart';
 import 'package:hexacom_user/deleviry/commons/providers/location_provider.dart';
 import 'package:hexacom_user/deleviry/commons/providers/theme_provider.dart';
 import 'package:hexacom_user/deleviry/features/auth/providers/auth_provider.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/login_screen.dart';
 import 'package:hexacom_user/deleviry/features/chat/providers/chat_provider.dart';
 import 'package:hexacom_user/deleviry/features/order/providers/order_provider.dart';
 import 'package:hexacom_user/deleviry/features/profile/providers/profile_provider.dart';
@@ -108,9 +110,11 @@ Future<void> main() async {
     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
   }catch(e) {}
 
+
   runApp(MultiProvider(
     providers: [
-
+      // ChangeNotifierProvider(create: (context) => di.sl<AuthProvider_D>()),
+      // ... الكود الحالي
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LanguageProvider>()),
@@ -120,7 +124,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<AuthProvider_D>()),
+      ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<RegistrationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<VerificationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AddressProvider>()),

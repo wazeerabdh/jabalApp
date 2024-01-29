@@ -1,5 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:hexacom_user/common/reposotories/language_repo.dart';
+import 'package:hexacom_user/deleviry/commons/providers/localization_provider.dart';
+import 'package:hexacom_user/deleviry/commons/providers/location_provider.dart';
+import 'package:hexacom_user/deleviry/commons/providers/theme_provider.dart';
+import 'package:hexacom_user/deleviry/data/datasource/remote/dio/dio_client.dart';
+import 'package:hexacom_user/deleviry/data/datasource/remote/dio/logging_interceptor.dart';
+import 'package:hexacom_user/deleviry/features/auth/providers/auth_provider.dart';
+import 'package:hexacom_user/deleviry/features/chat/domain/reposotories/chat_repo.dart';
+import 'package:hexacom_user/deleviry/features/chat/providers/chat_provider.dart';
+import 'package:hexacom_user/deleviry/features/order/domain/reposotories/order_repo.dart';
+import 'package:hexacom_user/deleviry/features/order/domain/reposotories/tracker_repo.dart';
+import 'package:hexacom_user/deleviry/features/order/providers/order_provider.dart';
+import 'package:hexacom_user/deleviry/features/order/providers/tracker_provider.dart';
+import 'package:hexacom_user/deleviry/features/profile/domain/reposotories/profile_repo.dart';
+import 'package:hexacom_user/deleviry/features/profile/providers/profile_provider.dart';
 import 'package:hexacom_user/features/address/domain/reposotories/location_repo.dart';
 import 'package:hexacom_user/features/address/providers/location_provider.dart';
 import 'package:hexacom_user/features/auth/domain/reposotories/auth_repo.dart';
@@ -53,18 +67,17 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // Core
   sl.registerLazySingleton(() => DioClient(AppConstants.baseUrl, sl(), loggingInterceptor: sl(), sharedPreferences: sl()));
-
   // Repository
   sl.registerLazySingleton(() => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => CategoryRepo(dioClient: sl()));
   sl.registerLazySingleton(() => BannerRepo(dioClient: sl()));
   sl.registerLazySingleton(() => ProductRepo(dioClient: sl()));
-  sl.registerLazySingleton(() => LanguageRepo());
+  // sl.registerLazySingleton(() => LanguageRepo());
   sl.registerLazySingleton(() => OnBoardingRepo(dioClient: sl()));
   sl.registerLazySingleton(() => CartRepo(sharedPreferences: sl()));
   sl.registerLazySingleton(() => OrderRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => ChatRepo(dioClient: sl(), sharedPreferences: sl()));
-  sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
+  // sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => LocationRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => ProfileRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => SearchRepo(dioClient: sl(), sharedPreferences: sl()));
@@ -72,7 +85,32 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CouponRepo(dioClient: sl()));
   sl.registerLazySingleton(() => WishListRepo(dioClient: sl()));
   sl.registerLazySingleton(() => NewsLetterRepo(dioClient: sl()));
+  sl.registerLazySingleton(() => DioClient_D(AppConstants.baseUrl, sl(), loggingInterceptor: sl(), sharedPreferences: sl()));
+  // Repository
+  sl.registerLazySingleton(() => LanguageRepo());
+  sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(() => ProfileRepo_D(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(() => OrderRepo_D(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(() => TrackerRepo_D(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(() => ChatRepo_D(dioClient: sl(), sharedPreferences: sl()));
 
+  // Provider
+  sl.registerFactory(() => ThemeProvider_D(sharedPreferences: sl()));
+
+  sl.registerFactory(() => LocalizationProvider_D(sharedPreferences: sl()));
+  sl.registerFactory(() => LanguageProvider(languageRepo: sl()));
+  sl.registerFactory(() => AuthProvider_D(authRepo: sl()));
+  sl.registerFactory(() => ProfileProvider_D(profileRepo1: sl()));
+  sl.registerFactory(() => OrderProvider_D(orderRepo: sl()));
+  sl.registerFactory(() => LocationProvider_D(sharedPreferences: sl()));
+  sl.registerFactory(() => TrackerProvider_D(trackerRepo: sl()));
+  sl.registerFactory(() => ChatProvider_D(chatRepo: sl()));
+
+  // External
+  final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
+  sl.registerLazySingleton(() => Dio());
+  sl.registerLazySingleton(() => LoggingInterceptor_D());
   // Provider
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
   sl.registerFactory(() => SplashProvider(splashRepo: sl(),sharedPreferences: sl()));
@@ -102,7 +140,6 @@ Future<void> init() async {
   sl.registerFactory(() => RateReviewProvider(productRepo: sl()));
 
   // External
-  final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => LoggingInterceptor());
