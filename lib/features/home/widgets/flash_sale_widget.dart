@@ -91,7 +91,7 @@ class FlashSaleWidget extends StatelessWidget {
               margin: const EdgeInsets.only(top: Dimensions.paddingSizeDefault, bottom: 80),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault),
-                color: Theme.of(context).primaryColor.withOpacity(0.15),
+                color: Colors.cyan.withOpacity(.3),
               ),
               child: FittedBox(
                 alignment: Alignment.topCenter,
