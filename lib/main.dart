@@ -119,6 +119,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
+     // ChangeNotifierProvider(create: (context) => di.sl<DeliveryManRegistrationScreen_D>()),
 
       ChangeNotifierProvider(create: (context) => di.sl<RegistrationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<VerificationProvider>()),
@@ -173,7 +174,6 @@ class _MyAppState extends State<MyApp> {
     Provider.of<SplashProvider>(context, listen: false).initSharedData();
     RouterHelper.setupRouter();
     if(kIsWeb) {
-
       Provider.of<SplashProvider>(context, listen: false).initSharedData();
       Provider.of<CartProvider>(context, listen: false).getCartData();
       Provider.of<SplashProvider>(context, listen: false).getPolicyPage();

@@ -20,6 +20,7 @@ class ProfileScreen_D extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final AuthProvider_D authProvider = Provider.of<AuthProvider_D>(context, listen: false);
     return Scaffold(
         body: Consumer<ProfileProvider_D>(builder: (context, profileProvider, child) =>

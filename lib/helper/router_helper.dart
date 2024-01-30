@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:hexacom_user/common/enums/html_type_enum.dart';
 import 'package:hexacom_user/common/models/product_model.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/delivery_man_registration_screen.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/login_screen.dart';
 import 'package:hexacom_user/features/address/screens/address_screen.dart';
 import 'package:hexacom_user/features/address/screens/select_location_screen.dart';
 import 'package:hexacom_user/features/category/screens/category_screen.dart';
@@ -13,6 +15,7 @@ import 'package:hexacom_user/features/forgot_password/screens/create_new_passwor
 import 'package:hexacom_user/features/forgot_password/screens/forgot_password_screen.dart';
 import 'package:hexacom_user/features/forgot_password/screens/verification_screen.dart';
 import 'package:hexacom_user/features/flash_sale/screens/flash_sale_details_screen.dart';
+import 'package:hexacom_user/features/splash/screens/splash_screen.dart';
 import 'package:hexacom_user/helper/email_checker_helper.dart';
 import 'package:hexacom_user/main.dart';
 import 'package:hexacom_user/common/enums/search_short_by_enum.dart';
@@ -43,7 +46,6 @@ import 'package:hexacom_user/features/profile/screens/profile_screen.dart';
 import 'package:hexacom_user/features/rate_review/screens/rate_review_screen.dart';
 import 'package:hexacom_user/features/search/screens/search_result_screen.dart';
 import 'package:hexacom_user/features/search/screens/search_screen.dart';
-import 'package:hexacom_user/features/splash/screens/splash_screen.dart';
 import 'package:hexacom_user/features/support/screens/support_screen.dart';
 import 'package:hexacom_user/features/track/screens/order_tracking_screen.dart';
 import 'package:hexacom_user/features/welcome_screen/screens/welcome_screen.dart';
@@ -67,6 +69,7 @@ class RouterHelper {
   static final Handler _welcomeHandler = Handler(handlerFunc: (context, Map<String, dynamic> params) => const WelcomeScreen());
 
   static final Handler _loginHandler = Handler(handlerFunc: (context, Map<String, dynamic> params) => const LoginScreen());
+
 
 
   static final Handler _productDetailsHandler = Handler(handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
@@ -252,7 +255,9 @@ class RouterHelper {
     router.define(routePath, handler: handler, transitionType: transitionType, transitionDuration: transitionDuration ?? const Duration(milliseconds: 150) );
   }
 
-
+///
+  static final Handler _deliveryManRegistrationScreen_D = Handler(handlerFunc: (context, Map<String, dynamic> params) => const DeliveryManRegistrationScreen_D());
+  static final Handler _loginscreen_D= Handler(handlerFunc: (context, Map<String, dynamic> params) => const LoginScreen_D());
 
 //*******Route Define*********
   static void setupRouter() {
@@ -300,6 +305,9 @@ class RouterHelper {
     _customRouteDefine(Routes.categories, handler: _categoriesHandler, transitionType: TransitionType.fadeIn);
     _customRouteDefine(Routes.flashSaleDetailsScreen, handler: _flashSaleDetailsHandler, transitionType: TransitionType.fadeIn);
     _customRouteDefine(Routes.orderListScreen, handler: _orderListHandler, transitionType: TransitionType.fadeIn);
+///Delivery
+    _customRouteDefine(Routes.deliveryManRegistrationScreen_D, handler: _deliveryManRegistrationScreen_D, transitionType: TransitionType.fadeIn);
+    _customRouteDefine(Routes.loginScreen_D, handler: _loginscreen_D, transitionType: TransitionType.fadeIn);
 
 
   }

@@ -135,7 +135,6 @@ class NotificationHelper {
     };
 
     PayloadModel payload = PayloadModel.fromJson(payloadData);
-
     if(kIsWeb) {
       showDialog(
           context: Get.context!,
@@ -144,10 +143,6 @@ class NotificationHelper {
           )
       );
     }
-
-
-
-
     if(image != null && image.isNotEmpty) {
       try{
         await showBigPictureNotificationHiddenLargeIcon(payload, fln);
@@ -158,7 +153,6 @@ class NotificationHelper {
       await showBigTextNotification(payload, fln);
     }
   }
-
 
   static Future<void> showBigTextNotification(PayloadModel payload, FlutterLocalNotificationsPlugin fln) async {
     BigTextStyleInformation bigTextStyleInformation = BigTextStyleInformation(
@@ -193,7 +187,6 @@ class NotificationHelper {
     final NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
     await fln.show(0,  payload.title,  payload.body, platformChannelSpecifics, payload: jsonEncode(payload.toJson()));
   }
-
   static Future<String> _downloadAndSaveFile(String url, String fileName) async {
     final Directory directory = await getApplicationDocumentsDirectory();
     final String filePath = '${directory.path}/$fileName';

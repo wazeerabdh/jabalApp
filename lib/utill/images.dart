@@ -141,6 +141,7 @@ class Images {
   static const String profileMenuIcon = 'assets/svg/profile_menu_icon.svg';
   static const String couponMenuIcon = 'assets/svg/coupon_menu_icon.svg';
   static const String userDeleteIcon = 'assets/svg/user_delete_icon.svg';
+  static const String delivery = 'assets/svg/delivery.svg';
   static const String locationDeleteIcon = 'assets/svg/location_delete_icon.svg';
   static const String wishListRemoveIcon = 'assets/svg/wish_list_remove_icon.svg';
   static const String lockIcon = 'assets/svg/lock.svg';

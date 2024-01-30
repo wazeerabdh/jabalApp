@@ -134,8 +134,8 @@ class AuthProvider_D with ChangeNotifier {
     _branchList = [];
 
     _branchList?.add(Branches_D(id: 0, name: getTranslated('all', Get.context!)));
-   // _branchList?.addAll(Provider.of<SplashProvider>(Get.context!, listen: false).configModel?.branches ?? []);
-  }
+    _branchList?.addAll(Provider.of<SplashProvider>(Get.context!, listen: false).configModel_D?.branches ?? []);
+   }
 
   void pickDmImage(bool isLogo, bool isRemove) async {
     if(isRemove) {

@@ -3,6 +3,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexacom_user/features/auth/providers/auth_provider.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:hexacom_user/deleviry/commons/widgets/custom_app_bar_widget.dart';
 import 'package:hexacom_user/deleviry/commons/widgets/custom_button_widget.dart';
@@ -49,16 +50,15 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
   @override
   void initState() {
     super.initState();
-    
+
     final SplashProvider splashProvider = Provider.of<SplashProvider>(context, listen: false);
     final AuthProvider_D authProvider = Provider.of<AuthProvider_D>(context, listen: false);
-
-    _countryDialCode = CountryCode.fromCountryCode(splashProvider.configModel!.countryCode!).dialCode;
+    _countryDialCode = CountryCode.fromCountryCode(splashProvider.configModel_D!.countryCode!).dialCode;
     authProvider.pickDmImage(false, true);
     authProvider.setIdentityTypeIndex(authProvider.identityTypeList[0], false);
 
-    authProvider.loadBranchList();
-    authProvider.setBranchIndex(0, isUpdate: false);
+    // authProvider.loadBranchList();
+    // authProvider.setBranchIndex(0, isUpdate: false);
 
   }
 
@@ -83,7 +83,7 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
               Align(alignment: Alignment.center, child: Text(
-                getTranslated('delivery_man_image', context)!,
+                getTranslated('delivery_man_image', context),
                 style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
               )),
               const SizedBox(height: Dimensions.paddingSizeSmall),
@@ -183,7 +183,7 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                     onChanged: (CountryCode countryCode) {
                       _countryDialCode = countryCode.dialCode;
                     },
-                    initialSelection: _countryDialCode,
+                    initialSelection: "YE",
                     favorite: [_countryDialCode!],
                     showDropDownButton: true,
                     padding: EdgeInsets.zero,
@@ -196,8 +196,6 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                   ),
                 ),
                 const SizedBox(width: Dimensions.paddingSizeSmall),
-
-
                 Expanded(flex: 1, child: CustomTextFieldWidget_D(
                   hintText: getTranslated('phone', context),
                   controller: _phoneController,
@@ -207,7 +205,6 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                 )),
               ]),
               const SizedBox(height: Dimensions.paddingSizeLarge),
-
               CustomTextFieldWidget_D(
                 hintText: getTranslated('password', context),
                 controller: _passwordController,
@@ -219,7 +216,6 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                 inputType: TextInputType.visiblePassword,
               ),
               const SizedBox(height: Dimensions.paddingSizeLarge),
-
               CustomTextFieldWidget_D(
                 hintText: getTranslated('confirm_password', context),
                 controller: _confirmPasswordController,
@@ -231,7 +227,6 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                 inputType: TextInputType.visiblePassword,
               ),
               const SizedBox(height: Dimensions.paddingSizeLarge),
-
               Row(children: [
                 Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
@@ -258,7 +253,9 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                           child: Text(authProvider.branchList![value].name!),
                         );
                       }).toList(),
-                      onChanged: (value)=> authProvider.setBranchIndex(value!),
+                      onChanged: (value) {
+                       authProvider.setBranchIndex(value!);
+                      },
                       isExpanded: true,
                       underline: const SizedBox(),
                     ),
@@ -281,7 +278,7 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),
-                      // boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 2, blurRadius: 5, offset: Offset(0, 5))],
+                   // boxShadow: [BoxShadow(color: Colors.grey[Get.isDarkMode ? 800 : 200], spreadRadius: 2, blurRadius: 5, offset: Offset(0, 5))],
                     ),
                     child: DropdownButton<String>(
                       value: authProvider.identityTypeList[authProvider.identityTypeIndex],
@@ -292,7 +289,7 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
                         );
                       }).toList(),
                       onChanged: (value) {
-                        authProvider.setIdentityTypeIndex(value, true);
+                    authProvider.setIdentityTypeIndex(value, true);
                       },
                       isExpanded: true,
                       underline: const SizedBox(),
@@ -388,10 +385,7 @@ class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistratio
               onTap: () => _addDeliveryMan(),
             ),
           ),
-
-
-
-        ]);
+ ]);
       }),
     );
   }

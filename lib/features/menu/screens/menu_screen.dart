@@ -135,15 +135,15 @@ class _MenuScreenState extends State<MenuScreen> {
                           PortionWidget(imageIcon: Images.order, title: getTranslated('my_orders', context), route: Routes.getOrderListScreen()),
                           PortionWidget(imageIcon: Images.address, title: getTranslated('my_address', context), route: Routes.getAddressRoute()),
                           PortionWidget(imageIcon: Images.couponMenuIcon, title: getTranslated('coupon', context), route: Routes.getCouponRoute()),
-                          isLoggedIn?  Text(""):
+                          isLoggedIn?  const Text(""):
                           InkWell(child:
                           Row(children: [
-                            SvgPicture.asset(Images.couponMenuIcon,),SizedBox(width: 10,),
+                            SvgPicture.asset(Images.delivery,height: 25,width: 25,color: Colors.grey,),const SizedBox(width: 10,),
                             Text(getTranslated('sing_up_or_login', context),
                               style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault),) ],),onTap:
                               (){
                             Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LoginScreen_D()),);},),
-
+Divider(),
                           InkWell(
                             onTap: (){
                               showModalBottomSheet(backgroundColor: Colors.transparent, context: context, builder: (ctx)=> Container(
@@ -165,10 +165,8 @@ class _MenuScreenState extends State<MenuScreen> {
                                       borderRadius: BorderRadius.circular(25),
                                     )),
                                     const SizedBox(height: Dimensions.paddingSizeDefault),
-
                                     Text(getTranslated('select_language', context), style: rubikMedium),
                                     const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-
                                     Text(getTranslated('choose_the_language', context), style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
                                     const SizedBox(height: Dimensions.paddingSizeExtraLarge),
 
