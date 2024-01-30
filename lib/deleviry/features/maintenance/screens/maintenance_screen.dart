@@ -6,8 +6,8 @@ import 'package:hexacom_user/utill/dimensions.dart';
 import 'package:hexacom_user/utill/images.dart';
 
 
-class MaintenanceScreen extends StatelessWidget {
-  const MaintenanceScreen({Key? key}) : super(key: key);
+class MaintenanceScreen_D extends StatelessWidget {
+  const MaintenanceScreen_D({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

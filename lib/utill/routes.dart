@@ -5,6 +5,7 @@ import 'package:hexacom_user/common/models/address_model.dart';
 import 'package:hexacom_user/common/models/category_model.dart';
 import 'package:hexacom_user/common/models/order_model.dart';
 import 'package:hexacom_user/common/enums/search_short_by_enum.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/delivery_man_registration_screen.dart';
 
 class Routes {
 
@@ -41,6 +42,7 @@ class Routes {
   static const String couponScreen = '/coupons';
   static const String supportScreen = '/support';
   static const String termsScreen = '/terms';
+  static const String deliveryManRegistrationScreen_D = '/DeliveryManRegistrationScreen_D';
   static const String policyScreen = '/privacy-policy';
   static const String aboutUsScreen = '/about-us';
   static const String productDetails = '/product-details';
@@ -128,6 +130,7 @@ class Routes {
     return '$chatScreen?order=$orderModel0';
   }
   static String getCouponRoute() => couponScreen;
+  static String deliveryManRe() => deliveryManRegistrationScreen_D;
   static String getSupportRoute() => supportScreen;
   static String getTermsRoute() => termsScreen;
   static String getPolicyRoute() => policyScreen;

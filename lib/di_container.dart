@@ -7,6 +7,7 @@ import 'package:hexacom_user/deleviry/data/datasource/remote/dio/dio_client.dart
 import 'package:hexacom_user/deleviry/data/datasource/remote/dio/logging_interceptor.dart';
 import 'package:hexacom_user/deleviry/features/auth/domain/reposotories/auth_repo.dart';
 import 'package:hexacom_user/deleviry/features/auth/providers/auth_provider.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/delivery_man_registration_screen.dart';
 import 'package:hexacom_user/deleviry/features/chat/domain/reposotories/chat_repo.dart';
 import 'package:hexacom_user/deleviry/features/chat/providers/chat_provider.dart';
 import 'package:hexacom_user/deleviry/features/order/domain/reposotories/order_repo.dart';
@@ -78,7 +79,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CartRepo(sharedPreferences: sl()));
   sl.registerLazySingleton(() => OrderRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => ChatRepo(dioClient: sl(), sharedPreferences: sl()));
-  sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
+  //sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => AuthRepo_D(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => LocationRepo(dioClient: sl(), sharedPreferences: sl()));
   sl.registerLazySingleton(() => ProfileRepo(dioClient: sl(), sharedPreferences: sl()));
@@ -132,6 +133,7 @@ Future<void> init() async {
   sl.registerFactory(() => VerificationProvider(authRepo: sl()));
   sl.registerFactory(() => AddressProvider(sharedPreferences: sl(), locationRepo: sl()));
   sl.registerFactory(() => LocationProvider(sharedPreferences: sl(), locationRepo: sl()));
+  sl.registerFactory(() => const DeliveryManRegistrationScreen_D());
   sl.registerFactory(() => ProfileProvider(profileRepo: sl()));
   sl.registerFactory(() => NotificationProvider(notificationRepo: sl()));
   sl.registerFactory(() => WishListProvider(wishListRepo: sl()));
@@ -140,7 +142,6 @@ Future<void> init() async {
   sl.registerFactory(() => NewsLetterProvider(newsLetterRepo: sl()));
   sl.registerFactory(() => FlashSaleProvider(productRepo: sl()));
   sl.registerFactory(() => RateReviewProvider(productRepo: sl()));
-
   // External
   // sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => Dio());

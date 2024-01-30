@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:hexacom_user/common/models/api_response_model.dart';
 import 'package:hexacom_user/common/models/config_model.dart';
+import 'package:hexacom_user/deleviry/commons/models/api_response.dart';
 import 'package:hexacom_user/deleviry/commons/models/config_model.dart';
+import 'package:hexacom_user/deleviry/helper/api_checker_helper.dart';
 import 'package:hexacom_user/features/splash/domain/models/policy_model.dart';
 import 'package:hexacom_user/features/splash/domain/reposotories/splash_repo.dart';
 import 'package:hexacom_user/helper/api_checker_helper.dart';
@@ -20,6 +23,7 @@ class SplashProvider extends ChangeNotifier {
   PolicyModel? _policyModel;
 
   BaseUrls? _baseUrls;
+  BaseUrls_D? _baseUrls_D;
   final DateTime _currentTime = DateTime.now();
 
 
@@ -28,6 +32,7 @@ class SplashProvider extends ChangeNotifier {
   PolicyModel? get policyModel => _policyModel;
 
   BaseUrls? get baseUrls => _baseUrls;
+  BaseUrls_D? get baseUrls_D => _baseUrls_D;
   DateTime get currentTime => _currentTime;
 
   bool _cookiesShow = true;
@@ -49,6 +54,20 @@ class SplashProvider extends ChangeNotifier {
     } else {
       isSuccess = false;
      ApiCheckerHelper.checkApi(apiResponse);
+    }
+    return isSuccess;
+  }
+  Future<bool> initConfig_1(BuildContext context) async {
+    ApiResponse_D apiResponse = await splashRepo!.getConfig1();
+    bool isSuccess;
+    if (apiResponse.response?.statusCode == 200) {
+      _configModel_D = ConfigModel_D.fromJson(apiResponse.response?.data);
+      _baseUrls_D = ConfigModel_D.fromJson(apiResponse.response?.data).baseUrls;
+      isSuccess = true;
+      notifyListeners();
+    } else {
+      isSuccess = false;
+      ApiCheckerHelper_D.checkApi(apiResponse);
     }
     return isSuccess;
   }
@@ -94,6 +113,4 @@ class SplashProvider extends ChangeNotifier {
 
   bool getAcceptCookiesStatus(String? data) => splashRepo!.sharedPreferences!.getString(AppConstants.cookingManagement) != null
       && splashRepo!.sharedPreferences!.getString(AppConstants.cookingManagement) == data;
-
-
 }

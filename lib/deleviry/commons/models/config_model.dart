@@ -12,7 +12,7 @@ class ConfigModel_D {
   double? _deliveryCharge;
   String? _cashOnDelivery;
   String? _digitalPayment;
-  List<Branches>? _branches;
+  List<Branches_D>? _branches;
   String? _termsAndConditions;
   String? _privacyPolicy;
   String? _aboutUs;
@@ -40,7 +40,7 @@ class ConfigModel_D {
         double? deliveryCharge,
         String? cashOnDelivery,
         String? digitalPayment,
-        List<Branches>? branches,
+        List<Branches_D>? branches,
         String? termsAndConditions,
         String? privacyPolicy,
         String? aboutUs,
@@ -93,7 +93,7 @@ class ConfigModel_D {
   double? get deliveryCharge => _deliveryCharge;
   String? get cashOnDelivery => _cashOnDelivery;
   String? get digitalPayment => _digitalPayment;
-  List<Branches>? get branches => _branches;
+  List<Branches_D>? get branches => _branches;
   String? get termsAndConditions => _termsAndConditions;
   String? get aboutUs=> _aboutUs;
   String? get privacyPolicy=> _privacyPolicy;
@@ -128,7 +128,7 @@ class ConfigModel_D {
     if (json['branches'] != null) {
       _branches = [];
       json['branches'].forEach((v) {
-        _branches!.add(Branches.fromJson(v));
+        _branches!.add(Branches_D.fromJson(v));
       });
     }
     _termsAndConditions = json['terms_and_conditions'];
@@ -283,7 +283,7 @@ class BaseUrls_D {
   }
 }
 
-class Branches {
+class Branches_D {
   int? _id;
   String? _name;
   String? _email;
@@ -292,7 +292,7 @@ class Branches {
   String? _address;
   double? _coverage;
 
-  Branches(
+  Branches_D(
       {int? id,
         String? name,
         String? email,
@@ -317,7 +317,7 @@ class Branches {
   String? get address => _address;
   double? get coverage => _coverage;
 
-  Branches.fromJson(Map<String, dynamic> json) {
+  Branches_D.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _name = json['name'];
     _email = json['email'];

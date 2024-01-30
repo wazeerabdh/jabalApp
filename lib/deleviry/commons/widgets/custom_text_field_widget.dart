@@ -69,7 +69,7 @@ class _CustomTextFieldWidget_DState extends State<CustomTextFieldWidget_D> {
       widget.showTitle ? Text(widget.hintText!, style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeSmall)) : const SizedBox(),
       SizedBox(height: widget.showTitle ? Dimensions.paddingSizeExtraSmall : 0),
 
-      Container(
+      Container(padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeExtraSmall),
           color: Theme.of(context).cardColor,

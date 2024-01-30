@@ -8,6 +8,7 @@ import 'package:hexacom_user/deleviry/commons/providers/localization_provider.da
 import 'package:hexacom_user/deleviry/commons/providers/location_provider.dart';
 import 'package:hexacom_user/deleviry/commons/providers/theme_provider.dart';
 import 'package:hexacom_user/deleviry/features/auth/providers/auth_provider.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/delivery_man_registration_screen.dart';
 import 'package:hexacom_user/deleviry/features/auth/screens/login_screen.dart';
 import 'package:hexacom_user/deleviry/features/chat/providers/chat_provider.dart';
 import 'package:hexacom_user/deleviry/features/order/providers/order_provider.dart';
@@ -70,8 +71,6 @@ Future<void> main() async {
   }
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-
-
   if(kIsWeb) {
     await Firebase.initializeApp(options: const FirebaseOptions(
         apiKey: "AIzaSyBRobgZqIC-dFsr05MzxUQXxQITjKpnDH0",
@@ -93,11 +92,7 @@ Future<void> main() async {
   }else{
     await Firebase.initializeApp();
     await FirebaseMessaging.instance.requestPermission();
-
     ///firebase crashlytics
-
-
-
   }
   await di.init();
   int? orderID;
@@ -124,7 +119,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
+
       ChangeNotifierProvider(create: (context) => di.sl<RegistrationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<VerificationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AddressProvider>()),
@@ -138,6 +133,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<ChatProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProfileProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<NotificationProvider>()),
+      // ChangeNotifierProvider(create: (context) => di.sl<DeliveryManRegistrationScreen_D>()),
       ChangeNotifierProvider(create: (context) => di.sl<CouponProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<WishListProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<NewsLetterProvider>()),
@@ -204,9 +200,7 @@ class _MyAppState extends State<MyApp> {
     return Consumer<SplashProvider>(
       builder: (context, splashProvider, child){
         return (kIsWeb && splashProvider.configModel == null) ? const SizedBox() : MaterialApp(
-
-          initialRoute: ResponsiveHelper.isMobilePhone() ? widget.orderId == null ? Routes.getSplashRoute()
-              : Routes.getOrderDetailsRoute(widget.orderId) : splashProvider.configModel!.maintenanceMode!? Routes.getMaintainRoute():Routes.getMainRoute(),
+          initialRoute: ResponsiveHelper.isMobilePhone() ? widget.orderId == null ? Routes.getSplashRoute() : Routes.getOrderDetailsRoute(widget.orderId) : splashProvider.configModel!.maintenanceMode!? Routes.getMaintainRoute():Routes.getMainRoute(),
           onGenerateRoute: RouterHelper.router.generator,
           title: splashProvider.configModel != null ? splashProvider.configModel!.ecommerceName ?? '' : AppConstants.appName,
           debugShowCheckedModeBanner: false,

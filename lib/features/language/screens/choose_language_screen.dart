@@ -32,23 +32,23 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
           Center(
             child: Container(
               width: Dimensions.webScreenWidth,
-              padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge).copyWith(
+              padding: const EdgeInsets.symmetric(horizontal: 100).copyWith(
                 top: Dimensions.paddingSizeLarge,
               ),
               child: Text(
-                getTranslated('choose_the_language', context),
-                style: rubikMedium.copyWith(fontSize: 22, color: Theme.of(context).textTheme.bodyLarge!.color),
+               "اختر لغة التطبيق",
+                style: rubikMedium.copyWith(fontSize: 18, color: Theme.of(context).textTheme.bodyLarge!.color),
               ),
             ),
           ),
-          const SizedBox(height: 30),
+          // const SizedBox(height: 30),
 
 
-          Center(child: Container(
-            width: Dimensions.webScreenWidth,
-            padding: const EdgeInsets.only(left: Dimensions.paddingSizeLarge, right: Dimensions.paddingSizeLarge),
-            child: const SearchLanguageWidget(),
-          )),
+          // Center(child: Container(
+          //   width: Dimensions.webScreenWidth,
+          //   padding: const EdgeInsets.only(left: Dimensions.paddingSizeLarge, right: Dimensions.paddingSizeLarge),
+          //   child: const SearchLanguageWidget(),
+          // )),
           const SizedBox(height: 30),
 
           Expanded(child: SingleChildScrollView(child: LanguageSelectWidget(fromMenu: widget.fromMenu))),

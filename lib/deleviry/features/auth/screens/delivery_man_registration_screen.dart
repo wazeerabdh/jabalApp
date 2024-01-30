@@ -18,14 +18,14 @@ import 'package:hexacom_user/utill/styles.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-class DeliveryManRegistrationScreen extends StatefulWidget {
-  const DeliveryManRegistrationScreen({Key? key}) : super(key: key);
+class DeliveryManRegistrationScreen_D extends StatefulWidget {
+  const DeliveryManRegistrationScreen_D({Key? key}) : super(key: key);
 
   @override
-  State<DeliveryManRegistrationScreen> createState() => _DeliveryManRegistrationScreenState();
+  State<DeliveryManRegistrationScreen_D> createState() => _DeliveryManRegistrationScreen_DState();
 }
 
-class _DeliveryManRegistrationScreenState extends State<DeliveryManRegistrationScreen> {
+class _DeliveryManRegistrationScreen_DState extends State<DeliveryManRegistrationScreen_D> {
 
   final TextEditingController _fNameController = TextEditingController();
   final TextEditingController _lNameController = TextEditingController();

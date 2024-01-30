@@ -2,6 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:hexacom_user/deleviry/features/dashboard/screens/dashboard_screen.dart';
+import 'package:hexacom_user/deleviry/features/maintenance/screens/maintenance_screen.dart';
+import 'package:hexacom_user/features/language/screens/choose_language_screen.dart';
 import 'package:hexacom_user/helper/responsive_helper.dart';
 import 'package:hexacom_user/localization/language_constrants.dart';
 import 'package:hexacom_user/main.dart';
@@ -48,6 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
         if(!isNotConnected) {
           _routeToPage();
+          _goRouteToPage();
         }
 
       }
@@ -60,6 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Provider.of<CartProvider>(context, listen: false).getCartData();
     _routeToPage();
+    _goRouteToPage();
     Provider.of<LanguageProvider>(context, listen: false).initializeAllLanguages(context);
 
 
@@ -133,6 +139,51 @@ class _SplashScreenState extends State<SplashScreen> {
         });
       }
     });
-  }
 
+
+    // void _checkPermission(Widget navigateTo) async {
+    //   LocationPermission permission = await Geolocator.checkPermission();
+    //   if(permission == LocationPermission.denied) {
+    //     permission = await Geolocator.requestPermission();
+    //   }
+    //   if(permission == LocationPermission.denied) {
+    //     showDialog(context: Get.context!, barrierDismissible: false, builder: (context) => AlertDialog(
+    //       title: Text(getTranslated('alert', context)!),
+    //       content: Text(getTranslated('allow_for_all_time', context)!),
+    //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    //       actions: [ElevatedButton(
+    //         onPressed: () async {
+    //           Navigator.pop(context);
+    //           await Geolocator.requestPermission();
+    //           _checkPermission(navigateTo);
+    //         },
+    //         child: Text(getTranslated('ok', context)!),
+    //       )],
+    //     ));
+    //   }else if(permission == LocationPermission.deniedForever) {
+    //     await Geolocator.openLocationSettings();
+    //   }else {
+    //     Navigator.pushReplacement(Get.context!, MaterialPageRoute(builder: (_) => navigateTo));
+    //   }
+    // }
+  }
+  void _goRouteToPage() {
+    Provider.of<SplashProvider>(context, listen: false).initSharedData();
+    Provider.of<SplashProvider>(context, listen: false).initConfig_1(context).then((bool isSuccess) {
+      if (isSuccess) {
+        if(Provider.of<SplashProvider>(context, listen: false).configModel!.maintenanceMode!) {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const MaintenanceScreen_D()));
+        }
+        Timer(const Duration(seconds: 1), () async {
+          if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
+            Provider.of<AuthProvider>(context, listen: false).updateToken();
+            // _checkPermission(const DashboardScreen_D());
+          } else {
+            // _checkPermission(const ChooseLanguageScreen());
+          }
+
+        });
+      }
+    });
+  }
 }

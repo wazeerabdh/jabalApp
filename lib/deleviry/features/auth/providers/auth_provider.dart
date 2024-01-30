@@ -22,9 +22,7 @@ import 'package:http/http.dart' as http;
 
 class AuthProvider_D with ChangeNotifier {
   final AuthRepo_D? authRepo;
-
   AuthProvider_D({required this.authRepo});
-
   bool _isLoading = false;
   String? _loginErrorMessage = '';
   XFile? _pickedImage;
@@ -35,7 +33,7 @@ class AuthProvider_D with ChangeNotifier {
   XFile? _pickedLogo;
   XFile? _pickedCover;
   int? _selectedBranchIndex;
-  List<Branches>? _branchList;
+  List<Branches_D>? _branchList;
   String _verificationCode = '';
   bool _isEnableVerificationCode = false;
   bool _isActiveRememberMe = false;
@@ -50,7 +48,7 @@ class AuthProvider_D with ChangeNotifier {
   int get dmTypeIndex => _dmTypeIndex;
   XFile? get pickedLogo => _pickedLogo;
   XFile? get pickedCover => _pickedCover;
-  List<Branches>? get branchList => _branchList;
+  List<Branches_D>? get branchList => _branchList;
   int? get selectedBranchIndex => _selectedBranchIndex;
   String get verificationCode => _verificationCode;
   bool get isEnableVerificationCode => _isEnableVerificationCode;
@@ -135,7 +133,7 @@ class AuthProvider_D with ChangeNotifier {
   void loadBranchList(){
     _branchList = [];
 
-    _branchList?.add(Branches(id: 0, name: getTranslated('all', Get.context!)));
+    _branchList?.add(Branches_D(id: 0, name: getTranslated('all', Get.context!)));
    // _branchList?.addAll(Provider.of<SplashProvider>(Get.context!, listen: false).configModel?.branches ?? []);
   }
 

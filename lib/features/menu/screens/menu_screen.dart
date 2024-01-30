@@ -4,6 +4,8 @@ import 'package:hexacom_user/common/widgets/custom_app_bar_widget.dart';
 import 'package:hexacom_user/common/widgets/custom_image_widget.dart';
 import 'package:hexacom_user/common/widgets/language_select_widget.dart';
 import 'package:hexacom_user/common/widgets/theme_switch_button_widget.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/delivery_man_registration_screen.dart';
+import 'package:hexacom_user/deleviry/features/auth/screens/login_screen.dart';
 import 'package:hexacom_user/features/auth/providers/auth_provider.dart';
 import 'package:hexacom_user/features/language/widgets/language_select_button_widget.dart';
 import 'package:hexacom_user/features/menu/widgets/menu_web_widget.dart';
@@ -20,7 +22,7 @@ import 'package:hexacom_user/utill/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
 
@@ -37,8 +39,6 @@ class _MenuScreenState extends State<MenuScreen> {
     final SplashProvider splashProvider = Provider.of<SplashProvider>(context, listen: false);
     final ConfigModel? configModel = splashProvider.configModel;
     final policyModel = Provider.of<SplashProvider>(context, listen: false).policyModel;
-
-
     return Scaffold(
       appBar: ResponsiveHelper.isDesktop(context) ?  const CustomAppBarWidget() : null,
       body: Consumer<ProfileProvider>(
@@ -135,6 +135,14 @@ class _MenuScreenState extends State<MenuScreen> {
                           PortionWidget(imageIcon: Images.order, title: getTranslated('my_orders', context), route: Routes.getOrderListScreen()),
                           PortionWidget(imageIcon: Images.address, title: getTranslated('my_address', context), route: Routes.getAddressRoute()),
                           PortionWidget(imageIcon: Images.couponMenuIcon, title: getTranslated('coupon', context), route: Routes.getCouponRoute()),
+                          isLoggedIn?  Text(""):
+                          InkWell(child:
+                          Row(children: [
+                            SvgPicture.asset(Images.couponMenuIcon,),SizedBox(width: 10,),
+                            Text(getTranslated('sing_up_or_login', context),
+                              style: rubikRegular.copyWith(fontSize: Dimensions.fontSizeDefault),) ],),onTap:
+                              (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LoginScreen_D()),);},),
 
                           InkWell(
                             onTap: (){
@@ -215,7 +223,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             PortionWidget(imageIcon: Images.cancellationPolicy, title: getTranslated('cancellation_policy', context), route: Routes.getCancellationPolicyRoute(), hideDivider: true),
 
                         ]),
-                      )
+                      ),
                     ]),
 
                     if(isLoggedIn) Container(

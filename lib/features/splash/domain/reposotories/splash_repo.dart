@@ -1,6 +1,7 @@
 import 'package:hexacom_user/data/datasource/remote/dio/dio_client.dart';
 import 'package:hexacom_user/data/datasource/remote/exception/api_error_handler.dart';
 import 'package:hexacom_user/common/models/api_response_model.dart';
+import 'package:hexacom_user/deleviry/commons/models/api_response.dart';
 import 'package:hexacom_user/utill/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +18,14 @@ class SplashRepo {
       return ApiResponseModel.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse_D> getConfig1() async {
+    try {
+      final response = await dioClient!.get(AppConstants.configUri);
+      return ApiResponse_D.withSuccess(response);
+    } catch (e) {
+      return ApiResponse_D.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
   Future<ApiResponseModel> getPolicyPage() async {
     try {
       final response = await dioClient!.get(AppConstants.policyPage);
@@ -31,10 +40,12 @@ class SplashRepo {
       return sharedPreferences!.setBool(AppConstants.theme, false);
     }
     if(!sharedPreferences!.containsKey(AppConstants.countryCode)) {
-      return sharedPreferences!.setString(AppConstants.countryCode, AppConstants.languages[0].countryCode!);
+      return sharedPreferences!.setString(AppConstants.countryCode,
+          AppConstants.languages[0].countryCode!);
     }
     if(!sharedPreferences!.containsKey(AppConstants.languageCode)) {
-      return sharedPreferences!.setString(AppConstants.languageCode, AppConstants.languages[0].languageCode!);
+      return sharedPreferences!.setString(AppConstants.languageCode,
+          AppConstants.languages[0].languageCode!);
     }
     if(!sharedPreferences!.containsKey(AppConstants.onBoardingSkip)) {
       return sharedPreferences!.setBool(AppConstants.onBoardingSkip, false);

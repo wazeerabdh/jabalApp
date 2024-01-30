@@ -42,10 +42,11 @@ class _MainSliderWidgetState extends State<MainSliderWidget> {
               itemCount: widget.bannerList!.length,
               options: CarouselOptions(
                 autoPlayInterval: Duration(milliseconds: widget.bannerType == BannerType.primary ? 4200 : 5320),
-                height: ResponsiveHelper.isDesktop(context) ? 380 : (size.width - 32),
+                height: ResponsiveHelper.isDesktop(context) ? 380 : 160,
                 aspectRatio: 1.0,
                 enlargeCenterPage: true,
                 viewportFraction: 1,
+
                 autoPlay: true,
                 autoPlayCurve: Curves.easeInToLinear,
                 autoPlayAnimationDuration: Duration(milliseconds: widget.bannerType == BannerType.primary ? 2000 : 3000),
@@ -74,7 +75,7 @@ class _MainSliderWidgetState extends State<MainSliderWidget> {
                         image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls!.bannerImageUrl}/${ widget.bannerList![index].image}',
                         width: widget.bannerType == BannerType.primary ?  (widget.isMainOnly ? 1140 :   762) : (ResponsiveHelper.isDesktop(context) ?  380 : (size.width - 32)),
                         height: widget.bannerType == BannerType.primary ?  380 : (ResponsiveHelper.isDesktop(context) ?  380 : (size.width - 32)),
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

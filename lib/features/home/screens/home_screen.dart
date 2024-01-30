@@ -171,6 +171,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             }
                           ),
                         ):  const SizedBox(),
+                        /// Campaign
+                        if(!ResponsiveHelper.isDesktop(context)) Consumer<BannerProvider>(
+                            builder: (context, bannerProvider, _) {
+                              return MainSliderWidget(
+                                bannerType: BannerType.secondary, bannerList: bannerProvider.secondaryBannerList,
+                              );
+                            }
+                        ),
+
                         // Sliderer(),
                         const CategoryWidget(),
 
@@ -193,14 +202,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: Dimensions.paddingSizeDefault),
 
-                        /// Campaign
-                        if(!ResponsiveHelper.isDesktop(context)) Consumer<BannerProvider>(
-                          builder: (context, bannerProvider, _) {
-                            return MainSliderWidget(
-                              bannerType: BannerType.secondary, bannerList: bannerProvider.secondaryBannerList,
-                            );
-                          }
-                        ),
 
                         /// New Arrival
                         const NewArrivalWidget(),
