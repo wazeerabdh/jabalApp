@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "885444187774",
+    "project_id": "mountainmarketec",
+    "storage_bucket": "mountainmarketec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885444187774:android:57d32f8a6c0502ccebea2f",
+        "android_client_info": {
+          "package_name": "com.alawadhistores.souqexpress"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmxcioioMXcjyxhCHwE2vYs1-WpsTuu7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
