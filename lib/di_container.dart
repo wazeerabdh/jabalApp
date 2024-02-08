@@ -7,6 +7,10 @@ import 'package:souqexpress/deleviry/data/datasource/remote/dio/dio_client.dart'
 import 'package:souqexpress/deleviry/data/datasource/remote/dio/logging_interceptor.dart';
 import 'package:souqexpress/deleviry/features/auth/domain/reposotories/auth_repo.dart';
 import 'package:souqexpress/deleviry/features/auth/providers/auth_provider.dart';
+<<<<<<< HEAD
+=======
+import 'package:souqexpress/deleviry/features/auth/screens/delivery_man_registration_screen.dart';
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
 import 'package:souqexpress/deleviry/features/chat/domain/reposotories/chat_repo.dart';
 import 'package:souqexpress/deleviry/features/chat/providers/chat_provider.dart';
 import 'package:souqexpress/deleviry/features/order/domain/reposotories/order_repo.dart';

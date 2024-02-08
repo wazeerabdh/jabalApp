@@ -3,12 +3,21 @@ import 'package:souqexpress/common/enums/app_mode.dart';
 import 'package:souqexpress/utill/images.dart';
 
 class AppConstants {
+<<<<<<< HEAD
   static const String appName = 'سوق اكسبرس';
   static const double appVersion = 1.0;
   static const AppMode appMode = AppMode.release;
   static const String fontFamily = 'Tajawal';
  // static const String baseUrl ='https://alawadhi-stores.com';
  static const String baseUrl ='http://192.168.137.1/php_admin';
+=======
+  static const String appName = 'جملة اكسبرس';
+  static const double appVersion = 1.0;
+  static const AppMode appMode = AppMode.release;
+  static const String fontFamily = 'Tajawal';
+  static const String baseUrl ='https://hexaCom-admin.6amtech.com';
+  //static const String baseUrl ='http://192.168.1.143/install';
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';
   static const String latestProductUri = '/api/v1/products/latest';

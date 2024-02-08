@@ -22,6 +22,7 @@ class OnBoardingScreen extends StatelessWidget {
       child: Scaffold(
         body: Consumer<OnBoardingProvider>(
           builder: (context, onBoardingList, child) => onBoardingList.onBoardingList.isNotEmpty ? SafeArea(
+<<<<<<< HEAD
             child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
 
@@ -66,6 +67,51 @@ class OnBoardingScreen extends StatelessWidget {
                         },
                       ),
                     ),
+=======
+            child: Column(
+              children: [
+SizedBox(height: 20,),
+                onBoardingList.selectedIndex != onBoardingList.onBoardingList.length-1 ? Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                        onTap: () {
+                          onBoardingList.toggleShowOnBoardingStatus();
+                          Navigator.pushReplacementNamed(context, Routes.getWelcomeRoute());
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(color:Color(0xFF562E9C),borderRadius: BorderRadius.circular(10) ),
+                          child: Text(
+                            getTranslated('skip', context),
+                            style: TextStyle(color: Colors.white)
+                          ),
+                        )),
+                  ),
+                ) : const SizedBox(),
+
+                SizedBox(
+                  height: 230,width:160 ,
+                  child: PageView.builder(
+                    itemCount: onBoardingList.onBoardingList.length,
+                    controller: _pageController,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(30),
+                        child: Image.asset(onBoardingList.onBoardingList[index].imageUrl),
+                      );
+                    },
+                    onPageChanged: (index) {
+                      onBoardingList.changeSelectIndex(index);
+                    },
+                  ),
+                ),
+
+                Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                     Column(
                       children: [
                         Row(
@@ -109,7 +155,44 @@ class OnBoardingScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+<<<<<<< HEAD
 
+=======
+                    Container(
+                      padding: EdgeInsets.all(onBoardingList.selectedIndex == 2 ? 0 : 22),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          onBoardingList.selectedIndex == 0 || onBoardingList.selectedIndex == 2
+                              ? const SizedBox.shrink()
+                              : TextButton(
+                                  onPressed: () {
+                                    _pageController.previousPage(duration: const Duration(seconds: 1), curve: Curves.ease);
+                                  },
+                                  child: Container(                       padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(color:Color(0xFF562E9C),borderRadius: BorderRadius.circular(10) ),
+                                    child: Text(
+                                      getTranslated('previous', context),
+                                        style: TextStyle(color: Colors.white)
+                                    ),
+                                  )),
+                          onBoardingList.selectedIndex == 2
+                              ? const SizedBox.shrink()
+                              : TextButton(
+                                  onPressed: () {
+                                    _pageController.nextPage(duration: const Duration(seconds: 1), curve: Curves.ease);
+                                  },
+                                  child: Container(                       padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(color:Color(0xFF562E9C),borderRadius: BorderRadius.circular(10)),
+                                    child: Text(
+                                      getTranslated('next', context),
+                                      style: TextStyle(color: Colors.white)
+                                    ),
+                                  )),
+                        ],
+                      ),
+                    ),
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                     onBoardingList.selectedIndex == 2
                         ? Padding(
                             padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
@@ -122,6 +205,7 @@ class OnBoardingScreen extends StatelessWidget {
                         : const SizedBox.shrink(),
                   ],
                 ),
+<<<<<<< HEAD
                 Container(
                   padding: EdgeInsets.all(onBoardingList.selectedIndex == 2 ? 0 : 22),
                   child: Row(
@@ -156,6 +240,8 @@ class OnBoardingScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+=======
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
               ],
             ),
           ) : const SizedBox(),

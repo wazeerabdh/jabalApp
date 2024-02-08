@@ -107,19 +107,34 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
+<<<<<<< HEAD
                               vertical: 6,
                               horizontal: ResponsiveHelper.isDesktop(context) ? 0 :15
                             ),
                             child: Text(category.selectedCategoryModel?.name ?? '', style:TextStyle(
                               fontSize: 15,color: Color(0xFF562E9C),fontWeight: FontWeight.bold
+=======
+                              vertical: Dimensions.paddingSizeExtraSmall,
+                              horizontal: ResponsiveHelper.isDesktop(context) ? 0 : Dimensions.paddingSizeDefault
+                            ),
+                            child: Text(category.selectedCategoryModel?.name ?? '', style: rubikMedium.copyWith(
+                              fontSize: Dimensions.fontSizeOverLarge,
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                             )),
                           ),
 
                          if(category.subCategoryList != null) TabBar(
+<<<<<<< HEAD
                            padding: EdgeInsets.symmetric(horizontal: ResponsiveHelper.isDesktop(context) ?  0 : 12),
                             labelPadding:  EdgeInsets.only(
                               left: isLtr ? 0 : 12,
                               right: isLtr ? 12 : 0,
+=======
+                           padding: EdgeInsets.symmetric(horizontal: ResponsiveHelper.isDesktop(context) ?  0 : Dimensions.paddingSizeDefault),
+                            labelPadding:  EdgeInsets.only(
+                              left: isLtr ? 0 : Dimensions.paddingSizeDefault,
+                              right: isLtr ? Dimensions.paddingSizeDefault : 0,
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                             ),
                             controller: TabController(
                                 initialIndex: _tabIndex,
@@ -127,9 +142,14 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
                             ),
 
                             isScrollable: true,
+<<<<<<< HEAD
                             indicatorPadding: EdgeInsets.only(  bottom:ResponsiveHelper.isDesktop(context) ? 10:5),
                             unselectedLabelColor: ColorResources.getGreyColor(context),
                             indicatorWeight: 2,
+=======
+                            unselectedLabelColor: ColorResources.getGreyColor(context),
+                            indicatorWeight: 3,
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                             indicatorSize: TabBarIndicatorSize.label,
                             indicatorColor: Theme.of(context).primaryColor,
                             labelColor: Theme.of(context).textTheme.bodyLarge!.color,
@@ -246,7 +266,11 @@ class _CategoryScreenState extends State<CategoryScreen> with TickerProviderStat
 
   List<Tab> _tabs(CategoryProvider category) {
     List<Tab> tabList = [];
+<<<<<<< HEAD
     tabList.add(Tab(text: getTranslated('all', context),), );
+=======
+    tabList.add(Tab(text: getTranslated('all', context)));
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
     for (var subCategory in category.subCategoryList!) {
       tabList.add(Tab(text: subCategory.name!.length >= 30 ? '${subCategory.name!.substring(0,30 )}...' : subCategory.name));
     }

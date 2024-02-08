@@ -77,6 +77,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ? const ThirdPartyChatWidget()
             : const SizedBox(),
         bottomNavigationBar: !ResponsiveHelper.isDesktop(context)
+<<<<<<< HEAD
             ? BottomAppBar(
           notchMargin: 0,elevation: 0,padding: EdgeInsets.all(0),
             // إزالة الظل هنا
@@ -97,6 +98,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ],
               ),
             )
+=======
+            ? Container(color: Colors.white,
+          height: 50,
+          child: BottomAppBar(
+            elevation: 0, // إزالة الظل هنا
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _barItem(Images.homeImage, getTranslated('home', context), 0),
+                _barItem(
+                    Images.messageImage, getTranslated('live_chat', context), 1),
+                _barItem(
+                    Images.shoppingImage, getTranslated('myorders', context),
+                    2),
+                _barItem(
+                    Images.favourite, getTranslated('favourite', context),
+                    3),
+                _barItem(Images.moreImage, getTranslated('menu', context), 4),
+              ],
+            ),
+          ),
+        )
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
             : const SizedBox(),
         body: PageView.builder(
           controller: _pageController,
@@ -114,7 +139,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     bool isPressed = false; // حالة للإشارة إلى ما إذا تم الضغط على الأيقونة أم لا
 
     return BottomAppBar(    elevation: 0, // إزالة الظل هنا
+<<<<<<< HEAD
  padding: EdgeInsets.symmetric(horizontal: 2),
+=======
+
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
       child: Consumer<WishListProvider>(
         builder: (context, wishListProvider, _) {
           return GestureDetector(
@@ -133,7 +162,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             },
             child: Column(
               children: [
+<<<<<<< HEAD
 SizedBox(height: 4,),
+=======
+                SizedBox(height: 3,),
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                 Image.asset(
                   icon,
                   color: index == _pageIndex
@@ -144,11 +177,19 @@ SizedBox(height: 4,),
                       ? Theme
                       .of(context)
                       .primaryColor
+<<<<<<< HEAD
                       :Colors.grey,
                   height: 20,
                   width: 20,
                 ),
                 SizedBox(height: 2,),
+=======
+                      : Colors.grey,
+                  height: 25,
+                  width: 25,
+                ),
+                SizedBox(height: 4,),
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                 Text(
                   label!,
                   style: TextStyle(
@@ -161,8 +202,13 @@ SizedBox(height: 4,),
                         .of(context)
                         .primaryColor
                         : Colors.grey,
+<<<<<<< HEAD
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
+=======
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+>>>>>>> 6c53e34d80390c8a7d59fed5efa8d67c686f3e0c
                   ),
                 ),
               ],
